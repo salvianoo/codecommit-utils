@@ -1,5 +1,7 @@
 import sys
 import boto3
+import json
+from bson import json_util
 
 client = boto3.client('codecommit')
 
@@ -19,4 +21,4 @@ else:
     description = sys.argv[2]
 
 response = create_repository(name, description)
-print response
+print json.dumps(response, default=json_util.default)
